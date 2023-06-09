@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def home(request):
-    return HttpResponse('<h1>LingoCard</h1>')
+    return render(request, 'flashcards/home.html')
 
 
 def overview(request):
-    return HttpResponse('<h1>Flashcards Overview</h1>')
+    return render(request, 'flashcards/overview.html')
