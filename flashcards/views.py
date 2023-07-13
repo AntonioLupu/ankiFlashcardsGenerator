@@ -29,3 +29,6 @@ def overview(request):
         'cards': cards
     }
     return render(request, 'flashcards/overview.html', context)
+
+def starting(request):
+    return render(request, 'flashcards/starting.html')
