@@ -6,7 +6,7 @@
     </div>
     <div class="user-input col-md-5">
         <h3>Paste your vocabulary list below!</h3>
-        <form method="post" action="">
+        <form method="post" action="{% url 'generate-csv' %}">
             {% csrf_token %}
             <textarea name="vocabulary_data" rows="18" cols="55"></textarea>
             <br>
