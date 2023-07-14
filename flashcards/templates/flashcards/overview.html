@@ -1,7 +1,27 @@
 {% extends "flashcards/base.html" %}
 {% block content %}
     {% for card in cards %}
-        <h1>{{ card.front }}</h1>
-        <h1>{{ card.back }}</h1>
+        <div class="row">
+            <div class="col">
+                <h3 class="bg-info p-3">{{ card.front }}</h3>
+                <h3 class="bg-info p-3">{{ card.back }}</h3>
+            </div>
+            <ul class="col">
+                <li>
+                    <input type="radio" name="sentence_{{forloop.counter}}" id="{{forloop.counter}}_1" class="sentence_clicked">
+                    <label for="{{forloop.counter}}_1" id="{{forloop.counter}}_text1">Example Sentence 1</label>
+                </li>
+                <li>
+                    <input type="radio" name="sentence_{{forloop.counter}}" id="{{forloop.counter}}_2" class="sentence_clicked">
+                    <label for="{{forloop.counter}}_2" id="{{forloop.counter}}_text2">Example Sentence 2</label>
+                </li>
+                <li>
+                    <input type="radio" name="sentence_{{forloop.counter}}" id="{{forloop.counter}}_3" class="sentence_clicked">
+                    <label for="{{forloop.counter}}_3" id="{{forloop.counter}}_text3">Example Sentence 3</label>
+                </li>
+            </ul>
+        </div>
+
+        <br>
     {% endfor %}
 {% endblock content %}

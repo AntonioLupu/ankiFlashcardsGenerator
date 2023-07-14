@@ -25,14 +25,9 @@ def home(request):
     return render(request, 'flashcards/home.html', {'title': 'Home'})
 
 
-def overview(request):
-    context = {
-        'cards': cards
-    }
-    return render(request, 'flashcards/overview.html', context)
-
 def starting(request):
     return render(request, 'flashcards/starting.html')
+
 
 def generate_csv(request):
     # Get vocabulary data from textarea
@@ -57,3 +52,26 @@ def generate_csv(request):
             writer.writerow([word, translation])
 
     return response
+
+
+def overview(request):
+    # Get vocabulary data from textarea
+    vocabulary_data = request.POST.get('vocabulary_data')
+
+    # Create flashcard dictionary
+    flashcards = []
+
+    # Process each line of vocabulary data
+    lines = vocabulary_data.split('\n')
+    for line in lines:
+        line = line.strip()
+        if line:
+            # Split line into word and translation
+            word, translation = map(str.strip, line.split('='))
+
+            # write the word and translation to the dictionary
+            flashcards.append({'front': word, 'back': translation})
+
+    context = {'cards': flashcards}
+
+    return render(request, 'flashcards/overview.html', context)

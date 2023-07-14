@@ -38,3 +38,7 @@ ul {
 .homepage-container {
     margin-top: 10rem;
 }
+
+.card {
+    padding: 10%;
+}
