@@ -1,23 +1,30 @@
 {% extends "flashcards/base.html" %}
 {% block content %}
     {% for card in cards %}
-        <div class="row">
-            <div class="col">
-                <h3 class="bg-info p-3">{{ card.front }}</h3>
-                <h3 class="bg-info p-3">{{ card.back }}</h3>
+        <div class="row align-items-start p-3">
+            <div class="col-3 text-center">
+                <div class="bg-info p-4">{{card.front}}</div>
+                <br>
+                <div class="bg-info p-4">{{card.back}}</div>
             </div>
-            <ul class="col">
+            <ul class="col-9 align-self-center list-unstyled">
                 <li>
-                    <input type="radio" name="sentence_{{forloop.counter}}" id="{{forloop.counter}}_1" class="sentence_clicked">
-                    <label for="{{forloop.counter}}_1" id="{{forloop.counter}}_text1">Example Sentence 1</label>
+                    <label for="{{forloop.counter}}_1" id="{{forloop.counter}}_text1">
+                        <input type="radio" name="sentence_{{forloop.counter}}" id="{{forloop.counter}}_1" class="sentence_clicked">
+                        <span> {{card.sentences.0.0}}<br>{{card.sentences.0.1}} </span>
+                    </label>
                 </li>
                 <li>
-                    <input type="radio" name="sentence_{{forloop.counter}}" id="{{forloop.counter}}_2" class="sentence_clicked">
-                    <label for="{{forloop.counter}}_2" id="{{forloop.counter}}_text2">Example Sentence 2</label>
+                    <label for="{{forloop.counter}}_2" id="{{forloop.counter}}_text2">
+                        <input type="radio" name="sentence_{{forloop.counter}}" id="{{forloop.counter}}_2" class="sentence_clicked">
+                        <span>{{card.sentences.1.0}} <br> {{card.sentences.1.1}}</span>
+                    </label>
                 </li>
                 <li>
-                    <input type="radio" name="sentence_{{forloop.counter}}" id="{{forloop.counter}}_3" class="sentence_clicked">
-                    <label for="{{forloop.counter}}_3" id="{{forloop.counter}}_text3">Example Sentence 3</label>
+                    <label for="{{forloop.counter}}_3" id="{{forloop.counter}}_text3">
+                        <input type="radio" name="sentence_{{forloop.counter}}" id="{{forloop.counter}}_3" class="sentence_clicked">
+                        <span>{{card.sentences.2.0}} <br> {{card.sentences.2.1}}</span>
+                    </label>
                 </li>
             </ul>
         </div>

@@ -1,6 +1,8 @@
 import csv
+import itertools
 from django.shortcuts import render
 from django.http import HttpResponse
+from reverso_context_api import Client
 
 cards = [
     {
@@ -61,6 +63,9 @@ def overview(request):
     # Create flashcard dictionary
     flashcards = []
 
+    # Create client for reverso api
+    client = Client("ko", "en")
+
     # Process each line of vocabulary data
     lines = vocabulary_data.split('\n')
     for line in lines:
@@ -69,8 +74,14 @@ def overview(request):
             # Split line into word and translation
             word, translation = map(str.strip, line.split('='))
 
+            # Get 3 sample sentences
+            sentences = []
+            for sentence in itertools.islice(client.get_translation_samples(word, cleanup=True), 3):
+                sentences.append(sentence)
+
+
             # write the word and translation to the dictionary
-            flashcards.append({'front': word, 'back': translation})
+            flashcards.append({'front': word, 'back': translation, 'sentences': sentences})
 
     context = {'cards': flashcards}
 
